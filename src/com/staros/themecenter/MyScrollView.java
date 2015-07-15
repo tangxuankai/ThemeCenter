@@ -1,7 +1,5 @@
 package com.staros.themecenter;
 
-import com.staros.themecenter.AutoLoadListener.AutoLoadCallBack;
-
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
