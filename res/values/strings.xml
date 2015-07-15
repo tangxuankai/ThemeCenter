@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <string-array name="menu_array">
+        <item>Login</item>
+        <item>Register</item>
+        <item>About</item>
+    </string-array>
+    <string name="menu_name">menu</string>
+    <string name="app_name">ThemeCenter</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="theme_moudel">Theme</string>
+ 	<string name="wallpaper_moudel">WallPaper</string>
+  	<string name="mix_moudel">MIX</string>
+   	<string name="local_moudel">Local</string>
+   	<string name="new_commend">new Commend</string>
+   	<string name="theme_name">theme Name:</string>
+   	<string name="theme_price">Price:</string>
+   	<string name="free">Free</string>
+   	<string name="pull_up_more">Pull Load More</string>
+   	<string name="pull_down_more">Pull Load More</string>
+   	<string name="begin_download">Begin Download</string>
+</resources>

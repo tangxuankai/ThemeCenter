@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="stutasbar_background_green">#00CC00</color>
+    <color name="stutasbar_background_blue">#0066FF</color>
+    <color name="stutasbar_background_orange">#FF9966</color>
+    <color name="stutasbar_background_darkblue">#003366</color>
+    <color name="stutasbar_background_darkgreen">#339933</color>
+    <color name="white">#ffffff</color>
+</resources>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_main"
+    android:fitsSystemWindows="true"  
+    android:clipToPadding="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+	    <com.staros.themecenter.MyScrollView
+	        android:id="@+id/scroll_view"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent">
+	        <LinearLayout 
+	            android:id="@+id/ll_scroll_ad"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:orientation="vertical">
+	            <com.staros.scrollad.MyImgScroll
+			        android:id="@+id/myvp"
+			        android:layout_width="match_parent"
+			        android:layout_height="150dp" />
+			    <LinearLayout
+			        android:id="@+id/vb"
+			        android:layout_width="match_parent"
+			        android:layout_height="10dp"
+			        android:layout_marginTop="3dp"
+			        android:gravity="center"
+			        android:orientation="horizontal" >
+			    </LinearLayout>
+
+            <RelativeLayout android:id="@+id/rl_module"
+		        android:layout_width="match_parent"
+		        android:layout_height="140dp"
+		        android:layout_below="@id/ll_scroll_ad"
+		        android:paddingLeft="2dp"
+		        android:paddingRight="2dp">
+		        <TextView android:id="@+id/tv_theme"
+		            android:layout_height="70dp"
+		            android:layout_width="180dp"
+		            android:textSize="20sp"
+		            android:textStyle="bold"
+		            android:gravity="center"
+		            android:background="#f6e000"
+		            android:layout_alignParentLeft="true"
+		            android:text="@string/theme_moudel"></TextView>
+		        <TextView android:id="@+id/tv_wallpaper"
+		            android:layout_height="70dp"
+		            android:layout_width="180dp"
+		            android:textSize="20sp"
+		            android:gravity="center"
+		            android:background="#f45d33"
+		            android:textStyle="bold"
+		            android:layout_alignParentRight="true"
+		            android:text="@string/wallpaper_moudel"></TextView>
+		        <TextView android:id="@+id/tv_mix"
+		            android:layout_height="70dp"
+		            android:layout_width="180dp"
+		            android:textSize="20sp"
+		            android:gravity="center"
+		            android:background="#edec22"
+		            android:textStyle="bold"
+		            android:layout_below="@id/tv_theme"
+		            android:layout_alignParentLeft="true"
+		            android:text="@string/mix_moudel"></TextView>
+		        <TextView android:id="@+id/tv_local"
+		            android:layout_height="70dp"
+		            android:layout_width="180dp"
+		            android:gravity="center"
+		            android:textSize="20sp"
+		            android:background="#f666c0"
+		            android:textStyle="bold"
+		            android:layout_below="@id/tv_wallpaper"
+		            android:layout_alignParentRight="true"
+		            android:text="@string/local_moudel"></TextView>
+		    </RelativeLayout>
+		    <LinearLayout 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="#f6e4c0">
+                <TextView 
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="8pt"
+                    android:text="@string/new_commend"
+                    android:textColor="#e68b4e"/>
+            </LinearLayout>
+
+         	<com.staros.themecenter.MyGridView 
+         	    android:id="@+id/gv_new_commend"
+	        	android:layout_width="match_parent"
+	       	 	android:layout_height="wrap_content"
+	       	 	android:numColumns="3">
+    		</com.staros.themecenter.MyGridView>
+        </LinearLayout>
+    </com.staros.themecenter.MyScrollView>
+
+    <LinearLayout 
+         android:id="@+id/flow_llay"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:orientation="horizontal"
+         android:background="#f6e4c0"
+         android:visibility="gone">
+            <TextView 
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="8pt"
+                android:text="@string/new_commend"
+                android:textColor="#e68b4e"/>
+     </LinearLayout>
+</RelativeLayout>
