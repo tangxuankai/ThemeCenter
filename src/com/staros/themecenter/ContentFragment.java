@@ -1,48 +1,42 @@
 package com.staros.themecenter;
 
-import java.security.spec.MGF1ParameterSpec;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-import com.nostra13.universalimageloader.core.assist.FailReason;
-import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
-import com.staros.scrollad.MyImgScroll;
-import com.staros.themecenter.MyScrollView.AutoLoadCallBack;
-
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
-import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListAdapter;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.ImageView.ScaleType;
 import android.widget.Toast;
 
+import com.github.kevinsawicki.http.HttpRequest;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.staros.scrollad.MyImgScroll;
+import com.staros.themecenter.MyScrollView.AutoLoadCallBack;
+
 public class ContentFragment extends Fragment {
-	private Activity     mActivity;
-	private MyScrollView mScrollView;
-	private LinearLayout mFlowLayout;
+	private final static String SERVER_ADDRESS = "http://10.86.232.100:8080/client/theme/getList.jspx"; 
+	private Activity       mActivity;
+	private MyScrollView   mScrollView;
 	private RelativeLayout mTopView;
 	private MyImgScroll    mScrollAd;
-//	private PullToRefreshView mPullToRefreshView;
+	private ProgressBar    mProgressBar;
 	private MyGridView     mGridView;
 	private List<ThemeItemPreview> mGridViewData;
 	private GridViewAdapter mGridAdapter;
+	private AnimationController mAnimationController;
 	
 	private boolean      isImgScrolling = false;
 	private MyImgScroll  mMyPager;    // 图片容器
@@ -67,29 +61,40 @@ public class ContentFragment extends Fragment {
 	}
 
 	private void initView(View view) {
-    	mScrollView = (MyScrollView) view.findViewById(R.id.scroll_view);
-//    	mImageView  = (ImageView) view.findViewById(R.id.image_view);
-    	mFlowLayout = (LinearLayout) view.findViewById(R.id.flow_llay);
-    	mGridView   = (MyGridView) view.findViewById(R.id.gv_new_commend);
-//    	mScrollView.smoothScrollTo(0,0);  
-
+		mAnimationController = new AnimationController();
+    	mScrollView  = (MyScrollView) view.findViewById(R.id.scroll_view);
+    	mProgressBar = (ProgressBar) view.findViewById(R.id.pb_load);
+    	mGridView    = (MyGridView) view.findViewById(R.id.gv_new_commend);
+    	mAnimationController.scaleIn(mProgressBar, 200, 100);
+//    	mProgressBar.setVisibility(View.VISIBLE);
+ 
     	mScrollView.setCallback(callBack);
-    	
 		mGridView.setFocusable(false);
     	
 		mMyPager = (MyImgScroll) view.findViewById(R.id.myvp);
 		mOvalLayout = (LinearLayout) view.findViewById(R.id.vb);
 		
-//		AutoLoadListener autoLoadListener = new AutoLoadListener(callBack);
-//		mGridView.setOnScrollListener(autoLoadListener);
 		mGridView.setOnItemClickListener(new GridViewItemClick());
 		getImageUrl();//获取图片地址
 		initViewPager();//初始化图片
-		//开始滚动
 		mMyPager.start(mActivity, mListViews, 4000, mOvalLayout);
 		isImgScrolling = true;
+		getInfoFromServer();
 	}
     
+	private void getInfoFromServer() {
+		// TODO Auto-generated method stub
+//		String response = HttpRequest.get(SERVER_ADDRESS).body(); 
+		
+//		try {
+//			Thread.sleep(1000);
+//		} catch (Exception e) {
+//			// TODO: handle exception
+//		}
+//		mAnimationController.scaleOut(mProgressBar, 200, 10000);
+//		mProgressBar.setVisibility(View.GONE);
+	}
+
 	private void getImageUrl(){
 		mUrlList = new ArrayList<String>();
 		mUrlList.add("http://www.pp.dk/pp_mobler_logo.jpg");
@@ -229,6 +234,9 @@ public class ContentFragment extends Fragment {
 				long id) {
 			// TODO Auto-generated method stub
 			Toast.makeText(mActivity, "hello world", Toast.LENGTH_SHORT).show();
+			Intent intent = new Intent(mActivity, ThemeDetailActivity.class);
+			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			mActivity.startActivity(intent);
 		}
 		
 	}

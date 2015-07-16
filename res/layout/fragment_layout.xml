@@ -95,20 +95,11 @@
     		</com.staros.themecenter.MyGridView>
         </LinearLayout>
     </com.staros.themecenter.MyScrollView>
-
-    <LinearLayout 
-         android:id="@+id/flow_llay"
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:orientation="horizontal"
-         android:background="#f6e4c0"
-         android:visibility="gone">
-            <TextView 
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textSize="8pt"
-                android:text="@string/new_commend"
-                android:textColor="#e68b4e"/>
-     </LinearLayout>
+	<ProgressBar android:id="@+id/pb_load"
+	    android:layout_alignParentBottom="true"
+	    android:layout_centerHorizontal="true"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:visibility="gone"
+	    style="?android:attr/progressBarStyleLarge" />
 </RelativeLayout>

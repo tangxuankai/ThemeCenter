@@ -22,4 +22,9 @@
 	<string name="pull_up_more">上拉加载更多</string>
 	<string name="pull_down_more">下拉刷新</string>
 	<string name="begin_download">开始下载</string>
+	<string name="theme_size">主题大小：</string>
+	<string name="theme_update_time">更新时间：</string>
+	<string name="theme_description">主题介绍：</string>
+	<string name="praise">点赞</string>
+	<string name="download">下载</string>
 </resources>

@@ -21,4 +21,9 @@
    	<string name="pull_up_more">Pull Load More</string>
    	<string name="pull_down_more">Pull Load More</string>
    	<string name="begin_download">Begin Download</string>
+   	<string name="theme_size">Theme Size：</string>
+	<string name="theme_update_time">Update Time:</string>
+	<string name="theme_description">Description:</string>
+	<string name="praise">Praise</string>
+	<string name="download">Download</string>
 </resources>
