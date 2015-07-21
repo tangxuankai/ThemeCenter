@@ -35,7 +35,7 @@ public class MainActivity extends Activity{
 	private ListView       mLeftMenu;
 	private String[] items = null;
 	private ArrayAdapter<String> mAdapter;
-	private MaterialMenuIcon mMaterialMenu;
+//	private MaterialMenuIcon mMaterialMenu;
 	private boolean      isDrawerOpened;
 	@Override
 	protected void onCreate(Bundle arg0) {
@@ -49,15 +49,16 @@ public class MainActivity extends Activity{
 		items         = getResources().getStringArray(R.array.menu_array);
 		mAdapter      = new ArrayAdapter<String>(this, R.layout.drawer_list_item, items);
 		mLeftMenu.setAdapter(mAdapter);
-		mMaterialMenu = new MaterialMenuIcon(this, Color.WHITE, Stroke.THIN);
+		
+//		mMaterialMenu = new MaterialMenuIcon(this, Color.WHITE, Stroke.THIN);
 		
 		mDrawerLayout.setDrawerListener(new DrawerLayout.SimpleDrawerListener() {
 	        @Override
 	        public void onDrawerSlide(View drawerView, float slideOffset) {
-	        	mMaterialMenu.setTransformationOffset(
-	                MaterialMenuDrawable.AnimationState.BURGER_ARROW,
-	                isDrawerOpened ? 2 - slideOffset : slideOffset
-	            );
+//	        	mMaterialMenu.setTransformationOffset(
+//	                MaterialMenuDrawable.AnimationState.BURGER_ARROW,
+//	                isDrawerOpened ? 2 - slideOffset : slideOffset
+//	            );
 	        }
 
 	        @Override
@@ -76,19 +77,19 @@ public class MainActivity extends Activity{
 	        public void onDrawerStateChanged(int newState) {
 	            if(newState == DrawerLayout.STATE_IDLE) {
 	                if(isDrawerOpened) {
-	                	mMaterialMenu.setState(MaterialMenuDrawable.IconState.ARROW);
-	                	setTitle(R.string.menu_name);
+//	                	mMaterialMenu.setState(MaterialMenuDrawable.IconState.ARROW);
+//	                	setTitle(R.string.menu_name);
 	                }  else {
-	                	mMaterialMenu.setState(MaterialMenuDrawable.IconState.BURGER);
-	                	setTitle(R.string.app_name);
+//	                	mMaterialMenu.setState(MaterialMenuDrawable.IconState.BURGER);
+//	                	setTitle(R.string.app_name);
 	                }
 	                	
 	            }
 	        }
 	    });
 		
-		getActionBar().setHomeButtonEnabled(true);  
-		
+		getActionBar().setDisplayHomeAsUpEnabled(true); 
+		getActionBar().setHomeButtonEnabled(true);
 		initFragment();
 
 	}
@@ -141,13 +142,13 @@ public class MainActivity extends Activity{
 	protected void onPostCreate(Bundle savedInstanceState) {
 	    super.onPostCreate(savedInstanceState);
 	    isDrawerOpened = mDrawerLayout.isDrawerOpen(Gravity.START); // or END, LEFT, RIGHT
-	    mMaterialMenu.syncState(savedInstanceState);
+//	    mMaterialMenu.syncState(savedInstanceState);
 	}
 
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 	    super.onSaveInstanceState(outState);
-	    mMaterialMenu.onSaveInstanceState(outState);
+//	    mMaterialMenu.onSaveInstanceState(outState);
 	}
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -159,7 +160,6 @@ public class MainActivity extends Activity{
 	    	} else {
 	    		mDrawerLayout.openDrawer(mLeftMenu);
 	    	}
-	        
 	    }
 	    return super.onOptionsItemSelected(item);  
 

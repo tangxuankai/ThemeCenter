@@ -1,12 +1,15 @@
 package com.staros.themecenter;
 
 import android.app.Activity;
+import android.app.ActivityOptions;
+import android.content.Intent;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -25,6 +28,8 @@ public class ThemeDetailActivity extends Activity {
 		setContentView(R.layout.theme_detail);
 		setTransturestatus(true);
 		mInflater = LayoutInflater.from(this); 
+		getActionBar().setDisplayHomeAsUpEnabled(true); 
+		getActionBar().setHomeButtonEnabled(true);
 		initData();  
 		initView();
 	}
@@ -40,7 +45,26 @@ public class ThemeDetailActivity extends Activity {
 	        		 mGallery, false);
 	        ImageView img = (ImageView)view.findViewById(R.id.iv_gallery_item);
 			img.setImageResource(mImgIds[i]);
+			if (i == 0){
+				img.setTransitionName("transition_share");
+				img.setTag("transition_share");
+			} else {
+				img.setTransitionName("transition_share" + i);
+				img.setTag("transition_share" + i);
+			}
 			mGallery.addView(img);
+			img.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					String TransitionName = (String)v.getTag();
+					Intent intent = new Intent(ThemeDetailActivity.this, FullScreenPreview.class);
+					ActivityOptions options = ActivityOptions.
+							makeSceneTransitionAnimation(ThemeDetailActivity.this, v, TransitionName);
+					startActivity(intent, options.toBundle());
+				}
+			});
 		}
 	}
 
@@ -72,4 +96,27 @@ public class ThemeDetailActivity extends Activity {
 		    tintManager.setStatusBarTintResource(R.color.stutasbar_background_blue);//通知栏所需颜色   
 		}	
 	}
+
+
+
+	@Override
+	public void onBackPressed() {
+		// TODO Auto-generated method stub
+//		super.onBackPressed();
+		finishAfterTransition();
+	}
+
+
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// TODO Auto-generated method stub
+		if (item.getItemId() == android.R.id.home) {
+			
+			onBackPressed();
+		}
+		return super.onOptionsItemSelected(item);
+
+	}
+	
 }

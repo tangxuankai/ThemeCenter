@@ -8,6 +8,7 @@
         android:id="@+id/iv_theme_preview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:transitionName="@string/transition_share"
         android:layout_marginTop="2dp"
         android:layout_gravity="center"/>
     <TextView android:id="@+id/tv_theme_name"

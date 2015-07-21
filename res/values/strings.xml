@@ -14,6 +14,7 @@
  	<string name="wallpaper_moudel">WallPaper</string>
   	<string name="mix_moudel">MIX</string>
    	<string name="local_moudel">Local</string>
+   	<string name="ranklist_moudel">Ranklist</string>
    	<string name="new_commend">new Commend</string>
    	<string name="theme_name">theme Name:</string>
    	<string name="theme_price">Price:</string>
@@ -26,4 +27,17 @@
 	<string name="theme_description">Description:</string>
 	<string name="praise">Praise</string>
 	<string name="download">Download</string>
+	<string name="transition_share">transition_share</string>
+	<string name="title_title">TitleFlowIndicator</string>
+	<string name="diff_title">DifferentViewFlow</string>
+	<string name="classic">Classic</string>
+	<string name="hot">Hot</string>
+	<string name="sort">Sort</string>
+	<string name="sort1">Sort1</string>
+	<string name="sort2">Sort2</string>
+	<string name="sort3">Sort3</string>
+	<string name="sort4">Sort4</string>
+	<string name="sort5">Sort5</string>
+	<string name="sort6">Sort6</string>
+	
 </resources>

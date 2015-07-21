@@ -4,15 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
+import android.app.ActivityOptions;
 import android.app.Fragment;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -25,6 +28,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.staros.scrollad.MyImgScroll;
 import com.staros.themecenter.MyScrollView.AutoLoadCallBack;
+import com.staros.themecenter.thememmodule.ThemeModuleAcitivy;
 
 public class ContentFragment extends Fragment {
 	private final static String SERVER_ADDRESS = "http://10.86.232.100:8080/client/theme/getList.jspx"; 
@@ -34,6 +38,7 @@ public class ContentFragment extends Fragment {
 	private MyImgScroll    mScrollAd;
 	private ProgressBar    mProgressBar;
 	private MyGridView     mGridView;
+	private ImageButton    mIbTheme, mIbWallpaper, mIbMix, mIbLoacal;
 	private List<ThemeItemPreview> mGridViewData;
 	private GridViewAdapter mGridAdapter;
 	private AnimationController mAnimationController;
@@ -65,7 +70,12 @@ public class ContentFragment extends Fragment {
     	mScrollView  = (MyScrollView) view.findViewById(R.id.scroll_view);
     	mProgressBar = (ProgressBar) view.findViewById(R.id.pb_load);
     	mGridView    = (MyGridView) view.findViewById(R.id.gv_new_commend);
-    	mAnimationController.scaleIn(mProgressBar, 200, 100);
+    	mIbTheme     = (ImageButton) view.findViewById(R.id.ib_theme);
+    	mIbWallpaper = (ImageButton) view.findViewById(R.id.ib_wallpaper);
+    	mIbMix       = (ImageButton) view.findViewById(R.id.ib_ranklist);
+    	mIbLoacal    = (ImageButton) view.findViewById(R.id.ib_local);
+    	
+    	setImageButtonOnClickLisenter();
 //    	mProgressBar.setVisibility(View.VISIBLE);
  
     	mScrollView.setCallback(callBack);
@@ -82,6 +92,14 @@ public class ContentFragment extends Fragment {
 		getInfoFromServer();
 	}
     
+	private void setImageButtonOnClickLisenter() {
+		// TODO Auto-generated method stub
+		mIbTheme.setOnClickListener(new ImageButtonOnClick());
+		mIbLoacal.setOnClickListener(new ImageButtonOnClick());
+		mIbMix.setOnClickListener(new ImageButtonOnClick());
+		mIbWallpaper.setOnClickListener(new ImageButtonOnClick());
+	}
+
 	private void getInfoFromServer() {
 		// TODO Auto-generated method stub
 //		String response = HttpRequest.get(SERVER_ADDRESS).body(); 
@@ -94,6 +112,7 @@ public class ContentFragment extends Fragment {
 //		mAnimationController.scaleOut(mProgressBar, 200, 10000);
 //		mProgressBar.setVisibility(View.GONE);
 	}
+
 
 	private void getImageUrl(){
 		mUrlList = new ArrayList<String>();
@@ -235,8 +254,33 @@ public class ContentFragment extends Fragment {
 			// TODO Auto-generated method stub
 			Toast.makeText(mActivity, "hello world", Toast.LENGTH_SHORT).show();
 			Intent intent = new Intent(mActivity, ThemeDetailActivity.class);
-			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-			mActivity.startActivity(intent);
+			ActivityOptions options = ActivityOptions.
+					makeSceneTransitionAnimation(mActivity, view, "transition_share");
+			mActivity.startActivity(intent, options.toBundle());
+		}
+		
+	}
+	
+	class ImageButtonOnClick implements OnClickListener{
+
+		@Override
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+			int id = v.getId();
+			switch(id){
+			case R.id.ib_theme:
+				Intent intent = new Intent(mActivity, ThemeModuleAcitivy.class);
+//				ActivityOptions options = ActivityOptions.
+//						makeSceneTransitionAnimation(mActivity, v, "transition_share");
+				mActivity.startActivity(intent);
+				break;
+			case R.id.ib_wallpaper:
+				break;
+			case R.id.ib_ranklist:
+				break;
+			case R.id.ib_local:
+				break;
+			}
 		}
 		
 	}
