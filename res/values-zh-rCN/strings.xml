@@ -37,4 +37,5 @@
 	<string name="sort4">分类4</string>
 	<string name="sort5">分类5</string>
 	<string name="sort6">分类6</string>
+	<string name="respose_fail">服务器返回数据失败</string>
 </resources>

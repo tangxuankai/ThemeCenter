@@ -115,14 +115,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:background="#f6e4c0">
+                android:background="@color/stutasbar_background_orange">
                 <TextView 
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textSize="8pt"
                     android:text="@string/new_commend"
-                    android:textColor="#e68b4e"/>
+                    android:textColor="@color/white"/>
             </LinearLayout>
 
          	<com.staros.themecenter.MyGridView 
@@ -133,11 +133,18 @@
     		</com.staros.themecenter.MyGridView>
         </LinearLayout>
     </com.staros.themecenter.MyScrollView>
-	<ProgressBar android:id="@+id/pb_load"
-	    android:layout_alignParentBottom="true"
-	    android:layout_centerHorizontal="true"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:visibility="gone"
-	    style="?android:attr/progressBarStyleLarge" />
+    <com.staros.themecenter.titanic.TitanicTextView
+        android:id="@+id/my_text_view"
+        android:text="@string/loading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textColor="#212121"
+        android:textSize="60sp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="70dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"/>
+
 </RelativeLayout>

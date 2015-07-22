@@ -397,21 +397,22 @@ containing a value of this type.
         public static final int ic_pulltorefresh_arrow=0x7f020008;
         public static final int ic_pulltorefresh_arrow_up=0x7f020009;
         public static final int icon_selector=0x7f02000a;
-        public static final int load_begin=0x7f02000b;
-        public static final int load_failed=0x7f02000c;
-        public static final int local_moudel=0x7f02000d;
-        public static final int pic01=0x7f02000e;
-        public static final int ranklist_moudel=0x7f02000f;
-        public static final int tab_viewflow_android=0x7f020010;
-        public static final int tab_viewflow_cupcake=0x7f020011;
-        public static final int tab_viewflow_donut=0x7f020012;
-        public static final int tab_viewflow_eclair=0x7f020013;
-        public static final int tab_viewflow_froyo=0x7f020014;
-        public static final int tab_viewflow_gingerbread=0x7f020015;
-        public static final int tab_viewflow_honeycomb=0x7f020016;
-        public static final int tab_viewflow_icecream=0x7f020017;
-        public static final int theme_moudel=0x7f020018;
-        public static final int wallpaper_moudel=0x7f020019;
+        public static final int imitate_titanic_wave=0x7f02000b;
+        public static final int load_begin=0x7f02000c;
+        public static final int load_failed=0x7f02000d;
+        public static final int local_moudel=0x7f02000e;
+        public static final int pic01=0x7f02000f;
+        public static final int ranklist_moudel=0x7f020010;
+        public static final int tab_viewflow_android=0x7f020011;
+        public static final int tab_viewflow_cupcake=0x7f020012;
+        public static final int tab_viewflow_donut=0x7f020013;
+        public static final int tab_viewflow_eclair=0x7f020014;
+        public static final int tab_viewflow_froyo=0x7f020015;
+        public static final int tab_viewflow_gingerbread=0x7f020016;
+        public static final int tab_viewflow_honeycomb=0x7f020017;
+        public static final int tab_viewflow_icecream=0x7f020018;
+        public static final int theme_moudel=0x7f020019;
+        public static final int wallpaper_moudel=0x7f02001a;
     }
     public static final class id {
         public static final int East=0x7f0a0000;
@@ -448,8 +449,8 @@ containing a value of this type.
         public static final int ll_detial_info=0x7f0a0034;
         public static final int ll_scroll_ad=0x7f0a0019;
         public static final int menu=0x7f0a0015;
+        public static final int my_text_view=0x7f0a0022;
         public static final int myvp=0x7f0a001a;
-        public static final int pb_load=0x7f0a0022;
         public static final int progress=0x7f0a000b;
         public static final int pull_to_load_image=0x7f0a002b;
         public static final int pull_to_load_progress=0x7f0a002a;
@@ -510,6 +511,7 @@ containing a value of this type.
         public static final int free=0x7f07000c;
         public static final int hello_world=0x7f070002;
         public static final int hot=0x7f070019;
+        public static final int loading=0x7f070021;
         public static final int local_moudel=0x7f070007;
         public static final int menu_name=0x7f070000;
         public static final int mix_moudel=0x7f070006;
@@ -518,6 +520,7 @@ containing a value of this type.
         public static final int pull_down_more=0x7f07000e;
         public static final int pull_up_more=0x7f07000d;
         public static final int ranklist_moudel=0x7f070008;
+        public static final int respose_fail=0x7f070022;
         public static final int sort=0x7f07001a;
         public static final int sort1=0x7f07001b;
         public static final int sort2=0x7f07001c;

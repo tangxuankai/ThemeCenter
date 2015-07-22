@@ -40,4 +40,7 @@
 	<string name="sort5">Sort5</string>
 	<string name="sort6">Sort6</string>
 	
+	<string name="loading">Loading</string>
+	<string name="respose_fail">respose fail</string>
+	
 </resources>

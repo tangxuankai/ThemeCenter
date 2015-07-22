@@ -80,7 +80,7 @@ public class HotAdapter extends BaseAdapter {
 		if ("0".equals(data.get(position).getThemePrice())){
 			holder.tvThemePrice.setText(R.string.free);
 		} else {
-			holder.tvThemePrice.setText(data.get(position).getThemePrice());
+			holder.tvThemePrice.setText(data.get(position).getThemePrice()+ "");
 		}
 		if (data.get(position).getPreviewResourceID() != -1){
 			holder.ivThemePreview.setImageResource(data.get(position).getPreviewResourceID());

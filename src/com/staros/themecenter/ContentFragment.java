@@ -3,11 +3,15 @@ package com.staros.themecenter;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import android.app.Activity;
 import android.app.ActivityOptions;
 import android.app.Fragment;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,22 +26,24 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.github.kevinsawicki.http.HttpRequest;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.staros.scrollad.MyImgScroll;
 import com.staros.themecenter.MyScrollView.AutoLoadCallBack;
 import com.staros.themecenter.thememmodule.ThemeModuleAcitivy;
+import com.staros.themecenter.titanic.Titanic;
+import com.staros.themecenter.titanic.TitanicTextView;
+import com.staros.themecenter.titanic.Typefaces;
 
 public class ContentFragment extends Fragment {
-	private final static String SERVER_ADDRESS = "http://10.86.232.100:8080/client/theme/getList.jspx"; 
+	private final static String SERVER_ADDRESS = "http://192.168.9.64:8080/theme/client/theme/get_list.jspx"; 
 	private Activity       mActivity;
 	private MyScrollView   mScrollView;
 	private RelativeLayout mTopView;
 	private MyImgScroll    mScrollAd;
-	private ProgressBar    mProgressBar;
 	private MyGridView     mGridView;
+	private TitanicTextView mTvLoader;
 	private ImageButton    mIbTheme, mIbWallpaper, mIbMix, mIbLoacal;
 	private List<ThemeItemPreview> mGridViewData;
 	private GridViewAdapter mGridAdapter;
@@ -68,12 +74,19 @@ public class ContentFragment extends Fragment {
 	private void initView(View view) {
 		mAnimationController = new AnimationController();
     	mScrollView  = (MyScrollView) view.findViewById(R.id.scroll_view);
-    	mProgressBar = (ProgressBar) view.findViewById(R.id.pb_load);
     	mGridView    = (MyGridView) view.findViewById(R.id.gv_new_commend);
     	mIbTheme     = (ImageButton) view.findViewById(R.id.ib_theme);
     	mIbWallpaper = (ImageButton) view.findViewById(R.id.ib_wallpaper);
     	mIbMix       = (ImageButton) view.findViewById(R.id.ib_ranklist);
     	mIbLoacal    = (ImageButton) view.findViewById(R.id.ib_local);
+    	
+        mTvLoader    = (TitanicTextView) view.findViewById(R.id.my_text_view);
+
+        // set fancy typeface
+        mTvLoader.setTypeface(Typefaces.get(mActivity, "Satisfy-Regular.ttf"));
+
+        // start animation
+        new Titanic().start(mTvLoader);
     	
     	setImageButtonOnClickLisenter();
 //    	mProgressBar.setVisibility(View.VISIBLE);
@@ -89,7 +102,7 @@ public class ContentFragment extends Fragment {
 		initViewPager();//初始化图片
 		mMyPager.start(mActivity, mListViews, 4000, mOvalLayout);
 		isImgScrolling = true;
-		getInfoFromServer();
+		
 	}
     
 	private void setImageButtonOnClickLisenter() {
@@ -98,19 +111,6 @@ public class ContentFragment extends Fragment {
 		mIbLoacal.setOnClickListener(new ImageButtonOnClick());
 		mIbMix.setOnClickListener(new ImageButtonOnClick());
 		mIbWallpaper.setOnClickListener(new ImageButtonOnClick());
-	}
-
-	private void getInfoFromServer() {
-		// TODO Auto-generated method stub
-//		String response = HttpRequest.get(SERVER_ADDRESS).body(); 
-		
-//		try {
-//			Thread.sleep(1000);
-//		} catch (Exception e) {
-//			// TODO: handle exception
-//		}
-//		mAnimationController.scaleOut(mProgressBar, 200, 10000);
-//		mProgressBar.setVisibility(View.GONE);
 	}
 
 
@@ -190,7 +190,17 @@ public class ContentFragment extends Fragment {
 	public void onStart() {
 		// TODO Auto-generated method stub
 		super.onStart();
-		initDate();
+//		initDate();
+//		getInfoFromServer();
+		GetThemeListTask task = new GetThemeListTask();
+		
+		task.execute(getFirstThemelist());
+	}
+
+	private String getFirstThemelist() {
+		// TODO Auto-generated method stub
+		String url = SERVER_ADDRESS + '?' + ServerResponJason.PAGENO + "=" + 1;
+		return url;
 	}
 
 	private void initDate() {
@@ -205,9 +215,8 @@ public class ContentFragment extends Fragment {
 				itemPreview.setPreviewResouceID(R.drawable.b);
 			}
 			itemPreview.setThemeName(mActivity.getResources().getString(R.string.app_name) + i);
-			itemPreview.setThemePrice("0");
+			itemPreview.setThemePrice(0.0);
 			mGridViewData.add(itemPreview);
-
 		}
 		mGridAdapter = new GridViewAdapter(mActivity);
 		mGridAdapter.setData(mGridViewData);
@@ -238,7 +247,7 @@ public class ContentFragment extends Fragment {
 					itemPreview.setPreviewResouceID(R.drawable.b);
 				}
 				itemPreview.setThemeName(mActivity.getResources().getString(R.string.app_name) + i);
-				itemPreview.setThemePrice("0");
+				itemPreview.setThemePrice(0.0);
 				mGridViewData.add(itemPreview);
 	          }
 	          mGridAdapter.setData(mGridViewData);
@@ -284,5 +293,69 @@ public class ContentFragment extends Fragment {
 		}
 		
 	}
+	
+	class GetThemeListTask extends AsyncTask<String, Void, List<ThemeItemPreview>>
+	{  
+	  
+	    public GetThemeListTask() {  
+	    }
+
+		@Override
+		protected List<ThemeItemPreview> doInBackground(String... params) {
+			// TODO Auto-generated method stub
+			mGridViewData = new ArrayList<ThemeItemPreview>();
+			try {
+				String response = HttpRequestUtil.httpRequest(params[0]);
+				JSONObject jsonObject = new JSONObject(response);
+				int isSuccess = jsonObject.optInt(ServerResponJason.EXECUTESTATUS, 0);
+				if (isSuccess == 1){
+					
+					return null;
+				}
+				String values = jsonObject.optString(ServerResponJason.VALUES);
+				JSONObject jsValues = new JSONObject(values);
+				String    result    = jsValues.optString(ServerResponJason.RESULT);
+				JSONArray jsonArray = new JSONArray(result);				
+				
+				for (int i = 0 ; i < jsonArray.length(); i++){
+					JSONObject object = jsonArray.getJSONObject(i);
+					ThemeItemPreview item = new ThemeItemPreview();
+					int    themeId   = object.optInt(ServerResponJason.THEMEID, -1);
+					String themeName = object.optString(ServerResponJason.THEMENAME);
+					double price     = object.optDouble(ServerResponJason.PRICE, 0.0);
+					String prieview  = object.optString(ServerResponJason.PREVIEWURL);
+					item.setThemeID(themeId);
+					item.setThemeName(themeName);
+					item.setThemePreview(prieview);
+					item.setThemePrice(price);
+					mGridViewData.add(item);
+				}
+
+			}catch(Exception e){
+				e.printStackTrace();
+				
+				return null;
+			}
+			
+			return mGridViewData;
+		}
+
+		@Override
+		protected void onPostExecute(List<ThemeItemPreview> result) {
+			// TODO Auto-generated method stub
+			super.onPostExecute(result);
+			if (result == null){
+				Toast.makeText(mActivity, getResources().getString(R.string.respose_fail), Toast.LENGTH_SHORT).show();
+				return;
+			}
+			new Titanic().cancel();
+			mTvLoader.setVisibility(View.GONE);
+			mGridAdapter = new GridViewAdapter(mActivity);
+			mGridAdapter.setData(result);
+			mGridView.setAdapter(mGridAdapter);
+		}  
+	  
+		
+	}  
 
 }

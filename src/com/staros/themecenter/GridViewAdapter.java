@@ -77,10 +77,10 @@ public class GridViewAdapter extends BaseAdapter {
 		}
 		
 		holder.tvThemeName.setText(data.get(position).getThemeName());
-		if ("0".equals(data.get(position).getThemePrice())){
+		if (0.0 == data.get(position).getThemePrice()){
 			holder.tvThemePrice.setText(R.string.free);
 		} else {
-			holder.tvThemePrice.setText(data.get(position).getThemePrice());
+			holder.tvThemePrice.setText(data.get(position).getThemePrice() + "");
 		}
 		if (data.get(position).getPreviewResourceID() != -1){
 			holder.ivThemePreview.setImageResource(data.get(position).getPreviewResourceID());

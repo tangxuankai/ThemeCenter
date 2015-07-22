@@ -7,7 +7,7 @@ public class ThemeItemPreview {
 	public int    previewResouceID = -1;
 	public String themePreivewUrl;
 	public String themeName;
-	public String themePrice;
+	public double themePrice;
 	public String downloadUrl;
 	
 	public void setPreviewResouceID(int resID){
@@ -25,7 +25,7 @@ public class ThemeItemPreview {
 	public void setThemeName(String name){
 		this.themeName = name;
 	}
-	public void setThemePrice(String price){
+	public void setThemePrice(double price){
 		this.themePrice = price;
 	}
 	
@@ -38,7 +38,7 @@ public class ThemeItemPreview {
 	public String getThemeName(){
 		return themeName;
 	}
-	public String getThemePrice(){
+	public double getThemePrice(){
 		return themePrice;
 	}
 	public String getDownloadURl(){

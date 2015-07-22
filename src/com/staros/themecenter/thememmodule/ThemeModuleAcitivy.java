@@ -102,7 +102,7 @@ public class ThemeModuleAcitivy extends Activity implements GridviewCallback{
 				itemPreview.setPreviewResouceID(R.drawable.b);
 			}
 			itemPreview.setThemeName(getResources().getString(R.string.app_name) + i);
-			itemPreview.setThemePrice("0");
+			itemPreview.setThemePrice(0.0);
 			mGridViewData1.add(itemPreview);
 			mGridViewData2.add(itemPreview);
 
@@ -171,7 +171,7 @@ public class ThemeModuleAcitivy extends Activity implements GridviewCallback{
 				itemPreview.setPreviewResouceID(R.drawable.b);
 			}
 			itemPreview.setThemeName(getResources().getString(R.string.app_name) + i);
-			itemPreview.setThemePrice("0");
+			itemPreview.setThemePrice(0.0);
 			mGridViewData1.add(itemPreview);
         }
         mHotAdapter.setData(mGridViewData1);
